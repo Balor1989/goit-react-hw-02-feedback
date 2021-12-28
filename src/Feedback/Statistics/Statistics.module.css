@@ -1,0 +1,12 @@
+.statList {
+  list-style: none;
+}
+.stat {
+  font-size: 20px;
+  font-weight: 400;
+}
+.total,
+.positivePersentage {
+  font-size: 20px;
+  font-weight: 700;
+}

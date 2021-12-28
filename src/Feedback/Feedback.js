@@ -1,8 +1,9 @@
 import { Component } from "react/cjs/react.production.min"
-import FeedbackButtons from "./FeedbackButton"
-import Section from "./Section"
-import Statistics from "./Statistics"
-import Notification from "./Notification"
+import FeedbackButtons from "./FeedbackButtons/FeedbackButton"
+import Section from "./Section/Section"
+import Statistics from "./Statistics/Statistics"
+import Notification from "./Notification/Notification"
+import s from './Feedback.module.css'
 
 class Feedback extends Component {
 
@@ -34,7 +35,7 @@ class Feedback extends Component {
     render() {
         const { good, neutral, bad } = this.state
         return (
-            <>
+            <section className={s.feedbackSection}>
                 <Section title={'Please leave feedback!'}>
                     <FeedbackButtons
                         options={['good', 'neutral', 'bad']}
@@ -49,7 +50,7 @@ class Feedback extends Component {
                             onCountTotalFeedback={this.countTotalFeedback()}
                             onCountPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage()} />
                     </Section>}
-            </>
+            </section>
         )
     }
 }
