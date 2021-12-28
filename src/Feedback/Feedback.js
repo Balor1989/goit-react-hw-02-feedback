@@ -10,11 +10,19 @@ class Feedback extends Component {
         neutral: 0,
         bad:0
     }
-    handleClick = () => {
-        console.log('Click!')
+    
+    handleClick = (e) => {
+        console.log(e.currentTarget.name)
+        this.setState((prevState) => {
+            console.log(prevState)
+            return {
+                [e.target.name]: prevState[e.target.name] + 1,
+            }
+        })
     }
 
     render() {
+        const {good, neutral, bad, total} = this.state
         return (
             <>
                 <FeedbackTitle
@@ -24,7 +32,7 @@ class Feedback extends Component {
                     onHandleClick={this.handleClick}
                 />
                 <Statistics
-                    options={['Good: ', 'Neutral: ', 'Bad: ', 'Total: ', 'Positive feedback: ']} />
+                    options={[`Good: ${good} `, `Neutral: ${neutral}`, `Bad: ${bad}`, `Total: ${total}`, 'Positive feedback: ']} />
             </>
         )
     }
