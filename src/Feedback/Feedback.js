@@ -12,20 +12,20 @@ class Feedback extends Component {
     }
     
     handleClick = (e) => {
-        console.log(e.currentTarget.name)
         this.setState((prevState) => {
-            console.log(prevState)
             return {
                 [e.target.name]: prevState[e.target.name] + 1,
             }
         })
     }
+    countTotalFeedback = () => {
+        const {good, bad, neutral} = this.state
+        return good + neutral + bad
+    }
      
-    
-
-
     render() {
-        const {good, neutral, bad, total} = this.state
+        const { good, neutral, bad } = this.state
+
         return (
             <>
                 <Section title={'Please leave feedback!'}>
@@ -36,7 +36,8 @@ class Feedback extends Component {
                 </Section>
                 <Section title={'Statistics'}>
                     <Statistics
-                        options={[`Good: ${good} `, `Neutral: ${neutral}`, `Bad: ${bad}`, `Total: ${total}`, 'Positive feedback: ']} />
+                        options={[`Good: ${good} `, `Neutral: ${neutral}`, `Bad: ${bad}`]}
+                        onCountTotalFeedback={this.countTotalFeedback()}/>
                 </Section>
             </>
         )
