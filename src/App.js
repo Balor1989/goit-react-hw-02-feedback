@@ -1,12 +1,11 @@
 // import './App.css';
+import Feedback from "./Feedback";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        Hello!
-      </header>
-    </div>
+    <>
+       <Feedback />
+    </>
   );
 }
 
