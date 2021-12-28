@@ -22,6 +22,13 @@ class Feedback extends Component {
         const {good, bad, neutral} = this.state
         return good + neutral + bad
     }
+    countPositiveFeedbackPercentage = () => {
+        const { good } = this.state;
+        if (!good) {
+            return 100
+        }
+        return (good * 100 / this.countTotalFeedback()).toFixed(0)
+    }
      
     render() {
         const { good, neutral, bad } = this.state
@@ -37,7 +44,8 @@ class Feedback extends Component {
                 <Section title={'Statistics'}>
                     <Statistics
                         options={[`Good: ${good} `, `Neutral: ${neutral}`, `Bad: ${bad}`]}
-                        onCountTotalFeedback={this.countTotalFeedback()}/>
+                        onCountTotalFeedback={this.countTotalFeedback()}
+                        onCountPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage()}/>
                 </Section>
             </>
         )

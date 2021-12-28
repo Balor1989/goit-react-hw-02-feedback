@@ -1,5 +1,5 @@
 
-const Statistics = ({options, onCountTotalFeedback}) => (
+const Statistics = ({options, onCountTotalFeedback, onCountPositiveFeedbackPercentage}) => (
     <ul>
         {options.map(option => (
             <li key={option}>
@@ -10,7 +10,7 @@ const Statistics = ({options, onCountTotalFeedback}) => (
             <p>Total: {onCountTotalFeedback}</p>
         </li>
         <li>
-            <p>Positive feedback: {}%</p>
+            <p>Positive feedback: {onCountPositiveFeedbackPercentage}%</p>
         </li>
     </ul>
 )
