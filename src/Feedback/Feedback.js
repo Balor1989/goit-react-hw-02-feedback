@@ -2,6 +2,7 @@ import { Component } from "react/cjs/react.production.min"
 import FeedbackButtons from "./FeedbackButton"
 import Section from "./Section"
 import Statistics from "./Statistics"
+import Notification from "./Notification"
 
 class Feedback extends Component {
 
@@ -25,14 +26,13 @@ class Feedback extends Component {
     countPositiveFeedbackPercentage = () => {
         const { good } = this.state;
         if (!good) {
-            return 100
+            return 0;
         }
         return (good * 100 / this.countTotalFeedback()).toFixed(0)
     }
      
     render() {
         const { good, neutral, bad } = this.state
-
         return (
             <>
                 <Section title={'Please leave feedback!'}>
@@ -41,12 +41,14 @@ class Feedback extends Component {
                         onHandleClick={this.handleClick}
                     />
                 </Section>
-                <Section title={'Statistics'}>
-                    <Statistics
-                        options={[`Good: ${good} `, `Neutral: ${neutral}`, `Bad: ${bad}`]}
-                        onCountTotalFeedback={this.countTotalFeedback()}
-                        onCountPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage()}/>
-                </Section>
+                {this.countTotalFeedback() === 0
+                    ? <Notification message={"No feedback given"} />
+                    : <Section title={'Statistics'}>
+                        <Statistics
+                            options={[`Good: ${good} `, `Neutral: ${neutral}`, `Bad: ${bad}`]}
+                            onCountTotalFeedback={this.countTotalFeedback()}
+                            onCountPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage()} />
+                    </Section>}
             </>
         )
     }
